@@ -26,11 +26,12 @@
       
       var eventName = "User Follow";
       //var dateRange = dateSelect.MPDatepicker('value');
-      var dateRange = {};
+      var params = {};
       dateRange['to'] = new Date();
       dateRange['from'] = new Date();
       dateRange['from'].setMonth(dateRange['from'].getMonth() - 6);
       dateRange['unit'] = 'month';
+      dateRange['type'] = 'general';
       
       console.log(dateRange);
 
