@@ -36,7 +36,7 @@
           .done(function(activeUsers) {
               /* Where calculation and graphing will take place */
               var networkDensity = {};
-              var networkDensity['Network Density'] = {};
+              networkDensity['Network Density'] = {};
               for (var date in window.uniqueFollows.values()['User Follow']) {
                 if (window.uniqueFollows.values()['User Follow'].hasOwnProperty(date)) {
                   var nodes = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
