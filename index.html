@@ -34,12 +34,14 @@
           var fromDate = dateRange.from.getFullYear() + '-' + (dateRange.from.getMonth()+1) + '-' +  dateRange.from.getDate();
           MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
           .done(function(activeUsers) {
-            /* Where calculation and graphing will take place */
+              /* Where calculation and graphing will take place */
+              var networkDensity = {};
               for (var date in window.uniqueFollows.values()['User Follow']) {
                 if (window.uniqueFollows.values()['User Follow'].hasOwnProperty(date)) {
                   var nodes = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
                   var potentialConnections = (nodes*(nodes-1))/2;
                   var actualConnections = window.uniqueFollows.values()['User Follow'][date];
+                  networkDensity[date] = actualConnections/potentialConnections:
                   console.log("Potential Connections: "+potentialConnections+", actual connections: "+actualConnections);
                 }
               }
