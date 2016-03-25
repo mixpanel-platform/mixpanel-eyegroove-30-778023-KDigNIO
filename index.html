@@ -26,9 +26,16 @@
       
       var eventName = "User Follow";
       var dateRange = dateSelect.MPDatepicker('value');
+      var params = {
+        from: moment().subtract(30, 'months'),    // the earliest date you'd like to include in the query
+        to: moment(),                           // the latest date you'd like to include in the query
+        type: 'general',                        // analysis type for the data, can be 'general', 'unique', or 'average'
+        unit: 'month',      
+      }
 
       if (eventName) {
-        MP.api.segment(eventName, null, dateRange).done(function(results) {
+        MP.api.segment(eventName, null, params).done(function(results) {
+          console.log(results.values());
           window.uniqueFollows = results;
           var toDate = dateRange.to.getFullYear() + '-' + (dateRange.to.getMonth()+1) + '-' +  dateRange.to.getDate();
           var fromDate = dateRange.from.getFullYear() + '-' + (dateRange.from.getMonth()+1) + '-' +  dateRange.from.getDate();
