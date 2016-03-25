@@ -29,8 +29,8 @@
 
       if (eventName) {
         MP.api.segment(eventName, [], dateRange).done(function(results) {
-          console.log(dateRange.from);
-          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], type:"unique",to_date: dateRange.to, from_date: dateRange.from, unit: 'day', union:1 }, {dataType: 'json'})
+          console.log(results);
+          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day'}, {dataType: 'json'})
           .done(function(json) {
               console.log('got json\n', json);
           })
