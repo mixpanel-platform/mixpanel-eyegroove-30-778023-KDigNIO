@@ -37,7 +37,7 @@
             /* Where calculation and graphing will take place */
               for (var date in uniqueFollows) {
                 if (uniqueFollows.hasOwnProperty(date)) {
-                  var potentialConnections = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"];
+                  var potentialConnections = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
                   console.log(potentialConnections);
                 }
               }
