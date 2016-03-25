@@ -35,11 +35,11 @@
           MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
           .done(function(activeUsers) {
             /* Where calculation and graphing will take place */
+            console.log(uniqueFollows);
               for (var date in uniqueFollows) {
                 if (uniqueFollows.hasOwnProperty(date)) {
-                  console.log(date);
                   var potentialConnections = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"];
-                  console.log(potentialConnections);
+                  //console.log(potentialConnections);
                 }
               }
               console.log('got json\n', activeUsers);
