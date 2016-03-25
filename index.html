@@ -25,10 +25,11 @@
       });
       
       var eventName = "User Follow";
-      var dateRange = dateSelect.MPDatepicker('value');
-      //var dateRange = {};
-      //dateRange['to'] = new Date();
-      console.log(dateRange);
+      //var dateRange = dateSelect.MPDatepicker('value');
+      var dateRange = {};
+      dateRange['to'] = new Date();
+      dateRange['from'] = newDate();
+      dateRange['from'].setMonth(dateRange['from'].getMonth() - 6);
       
       
 
