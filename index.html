@@ -37,9 +37,7 @@
         MP.api.segment(eventName, null, params).done(function(results) {
           console.log(results.values());
           window.uniqueFollows = results;
-          var toDate = params.to.getFullYear() + '-' + (params.to.getMonth()+1) + '-' +  params.to.getDate();
-          var fromDate = params.from.getFullYear() + '-' + (params.from.getMonth()+1) + '-' +  params.from.getDate();
-          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
+          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'month', to_date:params.to, from_date : params.from, union:1, type: 'unique'}, {dataType: 'json'})
           .done(function(activeUsers) {
               /* Where calculation and graphing will take place */
               var networkDensity = {};
