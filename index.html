@@ -26,17 +26,16 @@
       
       var eventName = "User Follow";
       //var dateRange = dateSelect.MPDatepicker('value');
-      var dateRange = {};
-      dateRange['to'] = new Date();
-      dateRange['from'] = new Date();
-      dateRange['from'].setMonth(dateRange['from'].getMonth() - 6);
-      dateRange['unit'] = 'month';
-      dateRange['type'] = 'general';
-      
+      var params = {
+        from: moment().subtract(6, 'months'),    
+        to: moment(),                           
+        type: 'general',                        
+        unit: 'month',        
+      }
       console.log(dateRange);
 
       if (eventName) {
-        MP.api.segment(eventName, [], dateRange).done(function(results) {
+        MP.api.segment(eventName, [], params).done(function(results) {
           console.log(results.values());
           window.uniqueFollows = results;
           var toDate = dateRange.to.getFullYear() + '-' + (dateRange.to.getMonth()+1) + '-' +  dateRange.to.getDate();
