@@ -30,6 +30,7 @@
       dateRange['to'] = new Date();
       dateRange['from'] = newDate();
       dateRange['from'].setMonth(dateRange['from'].getMonth() - 6);
+      dateRange['unit'] = 'month';
       
       
 
@@ -38,7 +39,7 @@
           window.uniqueFollows = results;
           var toDate = dateRange.to.getFullYear() + '-' + (dateRange.to.getMonth()+1) + '-' +  dateRange.to.getDate();
           var fromDate = dateRange.from.getFullYear() + '-' + (dateRange.from.getMonth()+1) + '-' +  dateRange.from.getDate();
-          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
+          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'month', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
           .done(function(activeUsers) {
               /* Where calculation and graphing will take place */
               var networkDensity = {};
