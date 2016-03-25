@@ -23,7 +23,18 @@
         showPercentages: true,
         firstColHeader: 'Event'
       });
-      runQuery;
+      
+      var eventName = "User Follow";
+      var dateRange = dateSelect.MPDatepicker('value');
+
+      if (eventName) {
+        MP.api.segment(eventName, [], dateRange).done(function(results) {
+          console.log(results);
+          eventGraph.MPChart('setData', results);
+          eventTable.MPTable('setData', results);
+        });
+      }
+      
       var runQuery = function() {
         var eventName = "User Follow";
         var dateRange = dateSelect.MPDatepicker('value');
