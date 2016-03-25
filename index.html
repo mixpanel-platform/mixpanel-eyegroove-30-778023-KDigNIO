@@ -27,9 +27,11 @@
       });
 
       var runQuery = function() {
-        var eventName = eventSelect.MPEventSelect('value'),
+        var eventName = "User Follow",
             propName  = propSelect.MPPropertySelect('value'),
             dateRange = dateSelect.MPDatepicker('value');
+            
+        console.log(dateRange);
 
         if (eventName) {
           MP.api.segment(eventName, propName, dateRange).done(function(results) {
