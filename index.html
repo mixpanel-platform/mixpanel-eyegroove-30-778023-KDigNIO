@@ -17,6 +17,8 @@
     </div>
     <div id="table"></div>
     <script>
+    
+    /* UI Objects */
       var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'line'});
       var eventTable  = $('#table').MPTable({
@@ -24,24 +26,28 @@
         firstColHeader: 'Event'
       });
       
+      /* Follow event, date range (not used) and segmentation params */
       var eventName = "User Follow";
       var dateRange = dateSelect.MPDatepicker('value');
       var params = {
-        from: moment().subtract(3, 'months'),    // the earliest date you'd like to include in the query
-        to: moment(),                           // the latest date you'd like to include in the query
-        type: 'general',                        // analysis type for the data, can be 'general', 'unique', or 'average'
+        from: moment().subtract(3, 'months'),    
+        to: moment(),                           
+        type: 'general',                        
         unit: 'month',      
       }
-      console.log(params);
       if (eventName) {
+        /* Get all follows per month */
         MP.api.segment(eventName, null, params).done(function(results) {
-          console.log(results.values());
+          
+          /* Results */
           window.uniqueFollows = results;
           var toDate = params.to.toDate().getFullYear() + '-' + (params.to.toDate().getMonth()+1) + '-' +  params.to.toDate().getDate();
           var fromDate = params.from.toDate().getFullYear() + '-' + (params.from.toDate().getMonth()+1) + '-' +  params.from.toDate().getDate();
+          
+          /* Get monthly active users (number of users who did at least one event in a month) */
           MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate, union:1, type: 'unique'}, {dataType: 'json'})
           .done(function(activeUsers) {
-              /* Where calculation and graphing will take place */
+              /* Use follows and active users per month to calculate density*/
               var networkDensity = {};
               networkDensity['Network Density'] = {};
               for (var date in window.uniqueFollows.values()['User Follow']) {
@@ -49,11 +55,14 @@
                   var nodes = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
                   var potentialConnections = (nodes*(nodes-1))/2;
                   var actualConnections = window.uniqueFollows.values()['User Follow'][date];
+                  
+                  /* Populate network density object */
                   networkDensity['Network Density'][date] = actualConnections/potentialConnections;
                   console.log(date+": actual connections = "+actualConnections+", potential connections = "+potentialConnections+"Active users = "+activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date]);
                 }
               }
               console.log(networkDensity);
+              /* Graph and table monthly network density */
               eventGraph.MPChart('setData', networkDensity);
               eventTable.MPTable('setData', networkDensity);
           })
