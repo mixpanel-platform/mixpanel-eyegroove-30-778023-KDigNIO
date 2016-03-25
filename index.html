@@ -28,7 +28,6 @@
 
       var runQuery = function() {
         var eventName = "User Follow";
-            //propName  = propSelect.MPPropertySelect('value'),
         var today = new Date();
         var oneMonthAgo = new Date();
         oneMonthAgo.setMonth(oneMonthAgo.getMonth()-1);
@@ -36,11 +35,11 @@
           'from': today.toISOString(),
           'to':oneMonthAgo.toISOString()
         };
-            
+        var dateRange 
         console.log(dateRange);
 
         if (eventName) {
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
+          MP.api.segment(eventName, [], dateRange).done(function(results) {
             eventGraph.MPChart('setData', results);
             eventTable.MPTable('setData', results);
           });
