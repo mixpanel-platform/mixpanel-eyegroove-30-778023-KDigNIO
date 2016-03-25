@@ -50,6 +50,7 @@
                   var potentialConnections = (nodes*(nodes-1))/2;
                   var actualConnections = window.uniqueFollows.values()['User Follow'][date];
                   networkDensity['Network Density'][date] = actualConnections/potentialConnections;
+                  console.log(date+": actual connections = "+actualConnections+", potential connections = "+potentialConnections);
                 }
               }
               console.log(networkDensity);
