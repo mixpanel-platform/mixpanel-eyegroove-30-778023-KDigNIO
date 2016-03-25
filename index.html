@@ -37,12 +37,13 @@
             /* Where calculation and graphing will take place */
               for (var date in window.uniqueFollows.values()['User Follow']) {
                 if (window.uniqueFollows.values()['User Follow'].hasOwnProperty(date)) {
-                  var potentialConnections = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
-                  console.log(potentialConnections);
+                  var nodes = activeUsers['data']['values']["[u'Groove View', u'Groove Record Clip', u'Search', u'App Background', u'Groove Create Start', u'Groove Create Start Choice', u'Groove Song Region', u'App Launch', u'Groove Song Choose Category', u'Groove Choose Song', u'Groove Song Scrub Waveform', u'App Resume']"][date];
+                  var potentialConnections = (nodes*(nodes-1))/2;
+                  var actualConnections = window.uniqueFollows.values()['User Follow'][date];
+                  console.log("Potential Connections: "+potentialConnections+", actual connections: "+actualConnections);
                 }
               }
               console.log('got json\n', activeUsers);
-              console.log(window.uniqueFollows.values());
           })
           .fail(function($xhr) {
               console.log('error with request', $xhr);
