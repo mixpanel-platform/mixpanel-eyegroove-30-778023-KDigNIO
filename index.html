@@ -17,8 +17,6 @@
     </div>
     <div id="table"></div>
     <script>
-      var eventSelect = $('#eventSelect').MPEventSelect();
-      var propSelect  = $('#propSelect').MPPropertySelect();
       var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'line'});
       var eventTable  = $('#table').MPTable({
@@ -27,16 +25,8 @@
       });
 
       var runQuery = function() {
-        var eventName = "User Follow";
-        var today = new Date();
-        var oneMonthAgo = new Date();
-        oneMonthAgo.setMonth(oneMonthAgo.getMonth()-1);
-        var dateRange = {
-          'from': today.toISOString(),
-          'to':oneMonthAgo.toISOString()
-        };
-        var dateRange 
-        console.log(dateRange);
+        var eventName = "User Follow"'
+        var dateRange = dateSelect.MPDatepicker('value');
 
         if (eventName) {
           MP.api.segment(eventName, [], dateRange).done(function(results) {
