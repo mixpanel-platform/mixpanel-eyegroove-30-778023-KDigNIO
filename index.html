@@ -32,7 +32,7 @@
           var toDate = dateRange.to.getFullYear() + '-' + (dateRange.to.getMonth()+1) + '-' +  dateRange.to.getDate();
           var fromDate = dateRange.from.getFullYear() + '-' + (dateRange.from.getMonth()+1) + '-' +  dateRange.from.getDate();
           console.log(toDate);
-          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:'2016-03-25', from_date : '2016-02-25'}, {dataType: 'json'})
+          MP.api.query('/api/2.0/events/', {event: ["Groove View", "Groove Record Clip", "Search", "App Background", "Groove Create Start", "Groove Create Start Choice", "Groove Song Region", "App Launch", "Groove Song Choose Category", "Groove Choose Song", "Groove Song Scrub Waveform", "App Resume"], unit: 'day', to_date:toDate, from_date : fromDate}, {dataType: 'json'})
           .done(function(json) {
               console.log('got json\n', json);
           })
