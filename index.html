@@ -47,12 +47,12 @@
                 }
               }
               eventGraph.MPChart('setData', networkDensity);
+              eventTable.MPTable('setData', networkDensity);
           })
           .fail(function($xhr) {
               console.log('error with request', $xhr);
           });
           
-          eventTable.MPTable('setData', results);
         });
       }
       
