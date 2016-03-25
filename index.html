@@ -29,9 +29,11 @@
       var runQuery = function() {
         var eventName = "User Follow";
             //propName  = propSelect.MPPropertySelect('value'),
+        var today = new Date();
+        var oneMonthAgo = today.setMonth(today.getMonth()-1);
         var dateRange = {
-          'from':'blank' ,
-          'to':new Date().toISOString()
+          'from': today.toISOString(),
+          'to':oneMonthAgo.toISOString()
         };
             
         console.log(dateRange);
