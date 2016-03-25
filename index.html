@@ -32,7 +32,7 @@
       dateRange['from'].setMonth(dateRange['from'].getMonth() - 6);
       dateRange['unit'] = 'month';
       
-      
+      console.log(dateRange);
 
       if (eventName) {
         MP.api.segment(eventName, [], dateRange).done(function(results) {
