@@ -38,7 +38,7 @@
       var runQuery = function() {
         var eventName = "User Follow";
         var dateRange = dateSelect.MPDatepicker('value');
-
+        console.log(dateRange);
         if (eventName) {
           MP.api.segment(eventName, [], dateRange).done(function(results) {
             console.log(results.values());
