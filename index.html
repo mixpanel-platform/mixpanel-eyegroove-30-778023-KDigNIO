@@ -52,6 +52,7 @@
                   networkDensity['Network Density'][date] = actualConnections/potentialConnections;
                 }
               }
+              console.log(networkDensity);
               eventGraph.MPChart('setData', networkDensity);
               eventTable.MPTable('setData', networkDensity);
           })
